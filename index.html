@@ -1,0 +1,75 @@
+<html>
+<head>
+	<link rel="stylesheet" href="http://taitems.github.com/Aristo-jQuery-UI-Theme/css/Aristo/Aristo.css" type="text/css" media="all">
+
+	<style>
+		body {
+			font-family: sans-serif, verdana;
+			width: 700px;
+		}
+	</style>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+
+	<script src="http://maps.google.com/maps/api/js?libraries=places&amp;sensor=false&amp;language=en-EN"></script>
+	<script src="helper.js"></script>
+</head>
+
+<body>
+<h1>Google Maps autocomplete extended</h1>
+
+<p>Google Maps API v3 <a href='http://code.google.com/apis/maps/documentation/javascript/reference.html#Autocomplete'>doesn't provide</a>
+the way to get a callback every time autocomplete predictions are changed, but this plugin does :-)
+Now you can use your favourite autocomplete with google maps.</p>
+
+<h2>Use <a href='http://jqueryui.com/demos/autocomplete/'>jQuery UI</a></h2>
+<input type='search' id='auto' placeholder='Enter a location' size='40'>
+
+<h2>Filter results</h2>
+<input type='search' id='cities' placeholder='Enter a city' size='40'>
+<p>Check <i>types</i> property of <i>predictions</i></p>
+
+<h2>Use your own autocomplete</h2>
+<p><input type='text' id='basic' size='40'><input type='text' id='callback' size='60'></p>
+<p>See <i>jInit</i></p>
+
+<h3>Links</h3>
+<ul>
+	<li><a href='https://github.com/agentcooper'>Me on GitHub</a></li>
+	<li><a href='https://github.com/taitems/Aristo-jQuery-UI-Theme'>jQuery UI Aristo theme</a></li>
+<ul>
+
+<script>
+function pluck(arr, prop) {
+	var i = arr.length, res = new Array(i);
+	while (i--) {
+		res[i] = arr[i][prop];
+	}
+	return res;
+}
+
+$(document).ready(function(){	
+	autocompleteHelper.jInit('auto', function(predictions) {
+		return pluck(predictions, 'bf');
+	});
+	
+	autocompleteHelper.jInit('cities', function(predictions) {
+		var res = [];
+
+		for (var i = 0; i < predictions.length; i++) {
+			if ($.inArray('locality', predictions[i].types) != -1) {
+				res.push(predictions[i]);
+			}
+		}
+
+		return pluck(res, 'bf');
+	});
+	
+	// init, not jInit
+	autocompleteHelper.init(document.getElementById('basic'), function(predictions) {
+		document.getElementById('callback').value = 'Predictions are ' + pluck(predictions, 'bf');
+	});
+});
+</script>
+</body>
