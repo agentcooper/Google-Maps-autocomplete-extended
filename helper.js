@@ -41,6 +41,8 @@ var autocompleteHelper = (function () {
         if (key == 'predictions' && this.d) {
 			inputEl = getInput(that);
 			
+			console.log(inputEl);
+			
 			i = p.length;
 			while (i--) {
 				if(p[i].el === inputEl) {
@@ -93,6 +95,9 @@ var autocompleteHelper = (function () {
 
 	return {
 		init: init,
-		jInit: jInit
+		jInit: jInit,
+		
+		//helpers
+		firstValue: firstValue
 	}
 })();

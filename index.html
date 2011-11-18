@@ -51,7 +51,12 @@ function pluck(arr, prop) {
 
 $(document).ready(function(){	
 	autocompleteHelper.jInit('auto', function(predictions) {
-		return pluck(predictions, 'bf');
+		
+		// note that keys in predictions object are not persistent
+		// following code gets first key, which corresponds to full name
+		for (var fullName in predictions[0]) break;
+		
+		return pluck(predictions, fullName);
 	});
 	
 	autocompleteHelper.jInit('cities', function(predictions) {
@@ -63,12 +68,14 @@ $(document).ready(function(){
 			}
 		}
 
-		return pluck(res, 'bf');
+		for (var fullName in predictions[0]) break;
+		return pluck(res, fullName);
 	});
 	
 	// init, not jInit
 	autocompleteHelper.init(document.getElementById('basic'), function(predictions) {
-		document.getElementById('callback').value = 'Predictions are ' + pluck(predictions, 'bf');
+		for (var fullName in predictions[0]) break;
+		document.getElementById('callback').value = 'Predictions are ' + pluck(predictions, fullName);
 	});
 });
 </script>
