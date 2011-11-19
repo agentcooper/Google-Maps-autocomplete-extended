@@ -40,12 +40,6 @@ var autocompleteHelper = (function () {
 
         if (key == 'predictions' && this.d) {
 			inputEl = getInput(that);
-			
-<<<<<<< HEAD
-=======
-			console.log(inputEl);
-			
->>>>>>> bdf6cb5b5b04619fbfcd7db33e8b087d12633d19
 			i = p.length;
 			while (i--) {
 				if(p[i].el === inputEl) {
