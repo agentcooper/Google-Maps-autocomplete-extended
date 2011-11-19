@@ -92,7 +92,7 @@ var autocompleteHelper = (function () {
 
 	return {
 		init: init,
-		jInit: jInit
+		jInit: jInit,
 		firstValue: firstValue
 	}
 })();
