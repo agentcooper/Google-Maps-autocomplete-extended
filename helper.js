@@ -84,8 +84,7 @@ var autocompleteHelper = (function () {
 			if (j.inArray(e.which, [38, 40, 13, 37, 39]) != -1) {
 				e.preventDefault();
 			} else {
-				gAuto.gm_bindings_.place.b.gm_bindings_.input.b.input = jInput.val();
-				gAuto.gm_bindings_.place.b.gm_bindings_.input.e();
+				gAuto.gm_bindings_.place.b.gm_bindings_.input.b.set('input', jInput.val());
 			}
 		});
 	}
