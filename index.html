@@ -34,9 +34,6 @@ Now you can use your favourite autocomplete with google maps.</p>
 <p><input type='text' id='basic' size='40'><input type='text' id='callback' size='60'></p>
 <p>See <i>jInit</i></p>
 
-<h2>Basic Google Maps v3 autocomplete for comparison</h2>
-<p><input type='text' id='basicGoogle' size='40'></p>
-
 <h3>Links</h3>
 <ul>
 	<li><a href='https://github.com/agentcooper'>Me on GitHub</a></li>
@@ -83,8 +80,6 @@ $(document).ready(function(){
 		if (!fullName) for (var fullName in predictions[0]) break;
 		document.getElementById('callback').value = 'Predictions are ' + pluck(predictions, fullName);
 	});
-	
-	new google.maps.places.Autocomplete(document.getElementById('basicGoogle'), ['geocode'])
 });
 </script>
 </body>
