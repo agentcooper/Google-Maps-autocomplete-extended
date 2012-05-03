@@ -40,7 +40,7 @@ var autocompleteHelper = (function () {
 
 		for (var stringKey in this) if (typeof this[stringKey] === 'string') break;
 		
-        if (key == 'predictions' && this.d) {
+        if (key == 'predictions' && this[stringKey]) {
 			inputEl = getInput(that);
 			i = p.length;
 			while (i--) {
