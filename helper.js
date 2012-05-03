@@ -36,9 +36,11 @@ var autocompleteHelper = (function () {
 	}
 	
 	function catcher(key) {
-		var inputEl, that = this, i;
+		var inputEl, that = this, i, stringKey;
 
-        if (key == 'predictions' && this.d) {
+		for (var stringKey in this) if (typeof this[stringKey] === 'string') break;
+		
+        if (key == 'predictions' && this[stringKey]) {
 			inputEl = getInput(that);
 			
 			i = p.length;
